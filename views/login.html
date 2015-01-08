@@ -1,0 +1,9 @@
+<form ng-controller="LoginCtrl" id="login-container" name="formLogin" class="animable">
+	<div id="login-center">
+		<img src="statics/images/logo.png" alt="Logo" title="Logo" id="login-logo"/>
+		<component-textfield ng-model="credentials.user" required="required" attribute-label="Usuário" class="login-field"></component-textfield>
+		<component-password ng-model="credentials.pass" required="required" attribute-label="Senha" class="login-field"></component-password>
+		<component-action-button attribute-loader="actionLogin" ng-click="Login();$event.preventDefault();" ng-disabled="formLogin.$invalid" label="Entrar"></component-action-button>
+		<div ng-class="{'active':GetStatusCode() !== 0}" id="login-message">{{GetStatusMessage()}}</div>
+	</div>
+</form>

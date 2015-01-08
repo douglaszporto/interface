@@ -1,0 +1,38 @@
+<div ng-controller="MenuCtrl" id="dashboard-menu-container" ng-class="{'compact':!active.expanded && !active.focus}" ng-mouseover="active.focus=true" ng-mouseleave="active.focus=false; active.showSubitems=false">
+	<ul id="dashboard-submenu" class="animable" ng-class="{'opened':active.hasSubitems && active.showSubitems}">
+		<li id="dashboard-submenu-header" ng-class="{'active':active.canSeeSubitensTitle}">{{active.label}}</li>
+		<li ng-repeat="subitem in active.subitems" class="dashboard-submenu-items" ng-class="{'active':active.canSeeSubitensItems}" ng-click="LoadContent(subitem.id)">{{subitem.label}}</li>
+	</ul>
+	<div id="dashboard-menu" class="animable">
+
+		<div id="dashboard-menu-header">
+			<img src="/statics/images/logo_small.png" id="dashboard-logo-open" />
+			<img src="/statics/images/logo_icon.png" id="dashboard-logo-compact" />
+		</div>
+
+		<ul>
+			<li ng-repeat="item in items" ng-click="SetActiveItem(item.id)" class="dashboard-menu-item" ng-class="{'active': IsActiveItem(item.id)}">
+				<div class="dashboard-menu-item-bkg">&nbsp;</div>
+				<div class="dashboard-menu-item-icon" ng-bind-html="item.icon | html"></div>
+				<div class="dashboard-menu-item-label">{{item.label}}</div>
+				<br>
+			</li>
+		</ul>
+
+		<div ng-click="Logout()" class="dashboard-menu-item" id="dashboard-menu-logout">
+			<div class="dashboard-menu-item-bkg">&nbsp;</div>
+			<div class="dashboard-menu-item-icon">&#xe266;</div>
+			<div class="dashboard-menu-item-label">Sair</div>
+			<br>
+		</div>
+	</div>
+</div>
+
+<div id="dashboard-content-main" class="animable" ng-controller="ContentCtrl" interface-main-content>
+	&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>
+	&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>
+</div>
+
+<div id="dashboard-loading" ng-controller="LoadingCtrl" ng-class="{'active' : loadingCounter > 0}">
+	<div class="loader">&nbsp;</div>
+</div>

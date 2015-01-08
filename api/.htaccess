@@ -1,0 +1,6 @@
+RewriteEngine On
+
+RewriteRule ^(/?)login$ /api/login.php [L]
+RewriteRule ^(/?)logout$ /api/logout.php [L]
+RewriteRule ^(/?)menu$ /api/menu.php [L]
+RewriteRule ^(/?)grid/([^/]+)$ /api/grid.php?model=$2 [QSA,L]

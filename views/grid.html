@@ -1,0 +1,27 @@
+<div class="content-main-title" ng-class="{'active':!isChangingContent()}">
+	{{data.title}}
+	<div class="content-main-search-wrapper">
+		<component-textfield ng-model="data.search" attribute-label="Buscar" id="content-main-search-input"></component-textfield>
+	</div>
+</div>
+<div class="content-main-opbar">
+	<interface-opbar-button hint="Adicionar" icon="&#xe025;" visibility="7"></interface-opbar-button>
+	<interface-opbar-button hint="Editar" icon="&#xe01d;" visibility="2"></interface-opbar-button>
+	<interface-opbar-button hint="Remover" icon="&#xe157;" visibility="6"></interface-opbar-button>
+	<interface-opbar-button hint="Atualizar" icon="&#xe271;" visibility="7"></interface-opbar-button>
+</div>
+<div class="content-main-grid" ng-class="{'active':!isChangingContent()}">
+	<table class="content-main-grid-table">
+		<tr class="content-main-grid-header">
+			<td class="content-main-grid-cell content-main-grid-row-id" width="3%">&nbsp;</td>
+			<td ng-repeat="column in data.fields" class="content-main-grid-cell" column-id="{{column.id}}" width="{{column.width}}">{{column.title}}</td>
+		</tr>
+		<tr ng-repeat="line in data.data" class="content-main-grid-row" ng-class="{'selected':isSelected(line['pk'])}" ng-click="toggleSelectedItem(line['pk'])">
+			<td class="content-main-grid-cell content-main-grid-row-id" interface-grid-id="{{line['pk']}}">&nbsp;</td>
+			<td ng-repeat="field in data.fields" class="content-main-grid-cell" interface-grid-type="{{field.type}}" ng-class="{ac:field.alignment=='C',ar:field.alignment=='R'}">{{line[field.id]}}</td>
+		</tr>
+		<tr class="content-main-grid-footer">
+			<td class="content-main-grid-cell" colspan="{{data.fields.length+1}}">&nbsp;</td>
+		</tr>
+	</table>
+</div>
